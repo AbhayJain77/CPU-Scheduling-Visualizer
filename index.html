@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CPU Scheduling Visualizer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>CPU Scheduling Visualizer</h1>
+
+  <div class="input-section">
+    <form id="processForm">
+      <input type="text" id="pid" placeholder="Process ID" required />
+      <input type="number" id="arrival" placeholder="Arrival Time" min="0" required />
+      <input type="number" id="burst" placeholder="Burst Time" min="1" required />
+      <input type="number" id="priority" placeholder="Priority (optional)" min="1" />
+      <button type="submit">Add Process</button>
+    </form>
+    
+    <div class="process-table">
+      <h3>Added Processes</h3>
+      <table id="processTable">
+        <thead>
+          <tr>
+            <th>Process ID</th>
+            <th>Arrival Time</th>
+            <th>Burst Time</th>
+            <th>Priority</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    
+    <div class="algorithm-select">
+      <label>Select Algorithm:</label>
+      <select id="algorithm">
+        <option value="fcfs">FCFS</option>
+        <option value="sjf">SJF</option>
+        <option value="rr">Round Robin</option>
+        <option value="priority">Priority</option>
+      </select>
+      <input type="number" id="quantum" placeholder="Time Quantum (for RR)" min="1" style="display:none;" />
+      <button id="saveBtn">Save</button>
+      <button id="resetBtn">Reset</button>
+    </div>
+  </div>
+
+  <div class="output-section">
+    <div class="visualization-controls">
+      <button id="playPauseBtn">Play</button>
+      <button id="stepBtn">Step</button>
+      <div class="speed-control">
+        <span>Speed:</span>
+        <input type="range" id="speedSlider" min="1" max="10" step="1" value="5">
+      </div>
+      <span id="currentTime">Time: 0</span>
+    </div>
+    
+    <h2>Gantt Chart</h2>
+    <div class="gantt-container">
+      <div id="ganttChart"></div>
+    </div>
+
+    <h2>Results</h2>
+    <div id="results"></div>
+    <div id="detailedResults"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
